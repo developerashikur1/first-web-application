@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Container, Grid, Rating, Typography } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -43,6 +44,7 @@ const Products = () => {
             <Container>
                 <Grid container spacing={2}>
                     {nikes.map(nike => <Grid key={nike?.img} item xs={12} md={3}>
+                    <Link style={{textDecoration:'none'}} to="/">
                         <Card sx={{ maxWidth: 325 }}>
                             <CardActionArea>
                                 <CardMedia
@@ -64,6 +66,7 @@ const Products = () => {
                                 </Button>
                             </CardActions>
                         </Card>
+                        </Link>
                     </Grid>)}
                 </Grid>
             </Container>

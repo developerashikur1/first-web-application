@@ -26,6 +26,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { makeStyles } from '@mui/styles';
 import { StarBorder } from '@mui/icons-material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import useAuth from '../Shared/Contexts/useAuth';
 
 const drawerWidth = 240;
 
@@ -125,6 +127,7 @@ const AdminDashboard = () => {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
   // const boxRef = useRef()
+  const {logOut, user} = useAuth();
 
   const handleToggle = (e) =>{
     e.preventDefault();
@@ -188,8 +191,12 @@ const AdminDashboard = () => {
               <Grid item xs={4}>
 
               </Grid>
-              <Grid item xs={4}>
+              <Grid sx={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'flex-end' }} item xs={4}>
+              <h5 style={{color:'white'}}>{user?.displayName}</h5>
                 <SettingsIcon/>
+                  <IconButton aria-label="delete" size="large">
+                    <LogoutIcon onClick={logOut} sx={{color:'white'}} fontSize="inherit" />
+                  </IconButton>
               </Grid>
           </Grid>
         </Toolbar>
@@ -346,7 +353,6 @@ const AdminDashboard = () => {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
             <Box>
-                <MainDashboard></MainDashboard>
                 <Outlet/>
             </Box>
       </Box>
